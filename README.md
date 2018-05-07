@@ -4,7 +4,7 @@ This project is pure API. No front-end created.
 
 ![postman](screen.png)
 
-1) `git clone git@github.com:sweettirexkiller/hands-on-express-api.git`
+1) `git clone git@github.com:sweettirexkiller/logistics-api.git`
 2) `logistics-api`
 3) `npm install`
 4) `nano index.js`
