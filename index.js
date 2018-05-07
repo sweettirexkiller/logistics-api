@@ -11,7 +11,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-require('validation/customRules')(app);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGODB_URI)

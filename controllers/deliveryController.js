@@ -22,7 +22,8 @@ exports.index = async (req, res) => {
 exports.store = async (req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        const err = new Error(errors.mapped());
+        const err = new Error();
+        err.message = errors.mapped();
         err.status = 422;
         return next(err);
     }
