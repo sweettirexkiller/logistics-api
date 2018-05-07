@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const Delivery = require('./../models/delivery');
 
 router.get('/', (req,res)=>{
     res.status(200).json({
-        description: "Packages routes for calculating price and number of trucks",
         requests: {
             "Creating Packages Delivery": {
                 type: 'POST',
@@ -14,34 +14,19 @@ router.get('/', (req,res)=>{
                     { "id": "CLIENT-ID-3", "weight": 300 },
                 ]
             }
-        }
+        },
+        description: "Packages routes for calculating price and number of trucks"
     });
 });
 
 router.post('/', async (req,res)=>{
-    let packages = req.body;
-    let totalWeight = 0;
-    let price = 0;
-    await packages.map(package => {
-        totalWeight += package.weight;
-        console.log(package);
-    });
-    price = calculatePrice(totalWeight);
-    //body: array of package objects
-    //response: price and trucks
+    const delivery = new Delivery(req.body);
+
+
     res.status(200).json({
-        "price": price,
-        "weight":totalWeight
+        "price": delivery.price
     });
 });
-
-
-const calculatePrice = (weight) => {
-  if(weight > 400){
-      return 2+ (0.005 * weight);
-  }
-  return weight * 0.01;
-};
 
 
 module.exports = router;
