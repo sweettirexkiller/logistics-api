@@ -4,7 +4,8 @@
   "description": "Swingdev assignment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/sweettirexkiller/logistics-api/issues"
   },
-  "homepage": "https://github.com/sweettirexkiller/logistics-api#readme"
+  "homepage": "https://github.com/sweettirexkiller/logistics-api#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.4"
+  }
 }
