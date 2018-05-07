@@ -2,7 +2,7 @@ const uuid = require('uuid/v1');
 
 module.exports = class Truck {
     constructor() {
-        this.truckID = uuid();
+        this.ID = uuid();
         this.MAX_LOAD = 1000;
         this.load = [];
     }
@@ -10,10 +10,8 @@ module.exports = class Truck {
     fit(item) {
         if ((item.weight + this.currentWeight()) < this.MAX_LOAD) {
             this.load.push({...item});
-            console.log(item, '<- just loaded ');
             return true;
         }
-        console.log(item, '<- did not fit ');
         return false;
     }
 

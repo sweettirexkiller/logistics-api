@@ -24,7 +24,8 @@ router.post('/', async (req,res)=>{
 
 
     res.status(200).json({
-        "price": delivery.price
+        "price": delivery.price,
+        "trucks": delivery.trucks
     });
 });
 
