@@ -24,8 +24,11 @@
   "homepage": "https://github.com/sweettirexkiller/logistics-api#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "express-validator": "^5.1.2",
+    "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.4",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "validator": "^10.1.0"
   }
 }

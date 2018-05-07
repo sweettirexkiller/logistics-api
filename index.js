@@ -1,13 +1,22 @@
 const express = require('express');
 const morgan = require('morgan');
-const app = express();
-// later add mongoose
+const mongoose = require('mongoose');
+const packagesRoutes = require('./routes/deliveryRoutes');
 
-const packagesRoutes = require('./routes/packagesRoutes');
+const app = express();
+
+const MONGODB_URI = 'mongodb://localhost/delivery';
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+require('validation/customRules')(app);
+
+mongoose.Promise = global.Promise;
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log(MONGODB_URI + ' connection successful.'))
+    .catch((err) => console.error(err));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", '*');
@@ -20,13 +29,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req,res)=>{
-   res.status(200).json({
-       routes: {
-           '/deliver':'GET, POST',
-           "/public/prices.pdf":"GET"
-       }
-   })
+app.get('/', (req, res) => {
+    res.status(200).json({
+        routes: {
+            '/deliver': 'GET, POST',
+            "/public/prices.pdf": "GET"
+        }
+    })
 });
 
 app.use('/deliver', packagesRoutes);
@@ -39,12 +48,12 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-   res.status(error.status || 500);
-   res.json({
-       error: {
-           message: error.message
-       }
-   })
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    })
 });
 
 const PORT = process.env.PORT || 5000;
